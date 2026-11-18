@@ -2,6 +2,8 @@
 
 > **Cách nhanh nhất:** mở **[setup_wizard.html](setup_wizard.html)** (tải file về rồi mở bằng trình duyệt). Chọn hệ điều hành (Windows, WSL2, Mac chip Apple, Mac Intel, Ubuntu) và RAM (8 GB hay 16 GB trở lên); trang tự nhận diện máy, đề xuất chạy local hay Colab, rồi hiện từng bước kèm lệnh để copy. Trang này dưới đây là bản đọc.
 
+> **Máy không có Internet?** Đừng làm theo trang này trực tiếp: xem **[OFFLINE.md](OFFLINE.md)** — chuẩn bị wheel, trọng số (kể cả `mobileclip2_b.ts`) và image Docker của CVAT trên **máy có mạng**, copy sang máy offline, rồi cài bằng `pip install --no-index`. File đó cũng là **tài liệu bối cảnh đầy đủ** (dữ liệu, taxonomy, script, rubric, hợp đồng chấm) để chatbot trả lời mọi câu hỏi về bài.
+
 Mục tiêu: sau trang này, `python scripts/check_env.py` in **SẴN SÀNG** và bạn chạy được YOLO26 trên một ảnh.
 Mất khoảng 30–45 phút (phần lớn là chờ tải) nên **làm ở nhà trước buổi học**, không tính vào 4 giờ. Làm ở **thư mục gốc của repo**. Máy yếu: bỏ qua trang này, dùng [Google Colab](COLAB.md).
 
@@ -9,7 +11,7 @@ Mất khoảng 30–45 phút (phần lớn là chờ tải) nên **làm ở nhà
 
 | Thứ | Bắt buộc? | Ghi chú |
 |---|---|---|
-| Python **3.10 – 3.13** | có | **Khuyến nghị 3.12** (3.13 đã có wheel sẵn trên PyPI/Colab; 3.14+ có thể chưa có bản cài sẵn cho torch/opencv). Kiểm tra: `python --version` (macOS/Linux: `python3 --version`) |
+| Python **3.10 – 3.13** | có | **Khuyến nghị 3.12** (3.13 đã có wheel sẵn trên PyPI/Colab; 3.14+ có thể chưa có bản cài sẵn cho torch/opencv). Kiểm tra: `python --version` (macOS/Linux: `python3 --version`) |
 | `git` | có | YOLOE tự cài CLIP từ GitHub qua git |
 | ~8 GB ổ trống | có | trọng số bài chính ~0.35 GB (bài nâng cao thêm ~6 GB), cộng thư viện ~4 GB |
 | GPU | **không** | Có CUDA hay Apple MPS thì nhanh hơn; CPU vẫn làm được (xem mục 5) |
@@ -21,18 +23,18 @@ Mất khoảng 30–45 phút (phần lớn là chờ tải) nên **làm ở nhà
 macOS / Linux:
 
 ```bash
-cd K5-L23-Day08-AI-Assisted-Labeling        # thư mục repo của bạn
+cd K5-L23-Day08-AI-Assisted-Labeling        # thư mục repo của bạn
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install -U pip
 pip install -r requirements.txt
 ```
 
-Windows: cài trước **Python 3.12** (hoặc 3.10–3.13 từ python.org, tick "Add to PATH") và **Git** (https://git-scm.com, kèm Git Bash). Rồi dùng PowerShell như dưới, hoặc Git Bash / WSL với khối macOS/Linux:
+Windows: cài trước **Python 3.12** (hoặc 3.10–3.13 từ python.org, tick "Add to PATH") và **Git** (https://git-scm.com, kèm Git Bash). Rồi dùng PowerShell như dưới, hoặc Git Bash / WSL với khối macOS/Linux:
 
 ```powershell
-cd K5-L23-Day08-AI-Assisted-Labeling        # thư mục repo của bạn
-python -m venv .venv                        # nếu có Python Launcher muốn chỉ định 3.12: py -3.12 -m venv .venv
+cd K5-L23-Day08-AI-Assisted-Labeling        # thư mục repo của bạn
+python -m venv .venv                        # nếu có Python Launcher muốn chỉ định 3.12: py -3.12 -m venv .venv
 .venv\Scripts\Activate.ps1
 python -m pip install -U pip
 pip install -r requirements.txt
@@ -59,7 +61,7 @@ python scripts/download_models.py --set sam1     # (tuỳ chọn) SAM 1 bản nh
 
 Máy yếu / chỉ CPU: dùng `--set small` (n-size + SAM 2.1 tiny). Khi đó mọi lệnh có `--size m` đổi thành `--size n`, và `--sam sam2.1_t.pt` (hoặc `mobile_sam.pt` của SAM 1 nếu máy rất yếu).
 
-Trọng số vào thư mục `models/` (không commit; đã có trong `.gitignore`). **YOLOE** lần chạy đầu tải thêm bộ mã hoá chữ (`mobileclip2_b.ts`) vào `models/` và tự cài CLIP từ git nếu máy chưa có `clip`: cần mạng và `git`.
+Trọng số vào thư mục `models/` (không commit; đã có trong `.gitignore`). **YOLOE** lần chạy đầu tải thêm bộ mã hoá chữ (`mobileclip2_b.ts`) vào `models/` và tự cài CLIP từ git nếu máy chưa có `clip`: cần mạng và `git`.
 
 ## 3. Kiểm tra
 
@@ -112,5 +114,5 @@ Nếu không dùng Colab:
 | `CUDA out of memory` | `--size s` hoặc `--imgsz 640`; đóng chương trình khác dùng GPU |
 | `Cannot access gated repo ... facebook/sam3` | Chưa được cấp quyền / chưa `hf auth login` (mục 4) |
 | `AttributeError: Sam3Model` | `pip install -U "transformers>=5.0"` |
-| `check_env.py` báo Python 3.14+ (hoặc thiếu wheel) | Tạo lại venv bằng Python 3.12 (`py -3.12 -m venv .venv` hoặc `python3.12 -m venv .venv`) |
+| `check_env.py` báo Python 3.14+ (hoặc thiếu wheel) | Tạo lại venv bằng Python 3.12 (`py -3.12 -m venv .venv` hoặc `python3.12 -m venv .venv`) |
 | Chạy xong nhưng `0 box` | Đọc dòng "Tên thô KHÔNG có trong ánh xạ": có thể ánh xạ nhãn sai; hoặc `--conf` quá cao |

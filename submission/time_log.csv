@@ -1,3 +1,4 @@
 step,images,minutes,note
-gold_manual,"img_001,img_012,img_020,img_036",42,"Gán tay 4 ảnh trong CVAT 2.81.0, không xem pre-label: 10 + 7 + 10 + 15 phút; 77 box; tick can_review cho 3 box không chắc quy tắc (xe ba bánh có mui ở xa)"
-batch_review,"24 ảnh batch + 10 ảnh QC",24,"Duyệt pre-label (có 12 bẫy) bằng 3 agent AI song song + người kiểm lại danh sách sửa: 19:12–19:36, tổng thời gian đồng hồ; xem REPORT mục 8 về giới hạn của số này"
+gold_manual,"img_001,img_012,img_020,img_036",42,"Gán tay 4 ảnh trong CVAT 2.81.0, không xem pre-label: 10 + 7 + 10 + 15 phút; 77 box; 1 box tick can_review (img_020, bus ở xa: bus hay truck?)"
+batch_review,"24 ảnh batch",18,"Duyệt pre-label (có 12 bẫy): 3 agent AI duyệt song song + người kiểm lại danh sách sửa, 19:12–19:30; xem REPORT mục 8 về giới hạn của số này"
+qc_review,"10 ảnh (2 vòng × 5 ảnh)",6,"Điền qc_review.csv cho vòng 1 (seed 42) và vòng 2 (seed 43), 19:30–19:36"

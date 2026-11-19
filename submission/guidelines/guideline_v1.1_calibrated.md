@@ -8,12 +8,12 @@
 | # | Câu hỏi | Quyết định v1.1 | Ảnh ví dụ | `case_id` |
 |---|---|---|---|---|
 | 1 | Xe đạp điện / xe máy điện nhỏ: `bicycle` hay `motorbike`? | Có **pê-đan và khung mảnh** thì `bicycle` (kể cả xe đạp điện có pê-đan); chỉ có vỏ xe tay ga, không thấy pê-đan thì `motorbike`. Không chắc: chọn `bicycle` + tick `can_review`. | img_031 | CAL-04 |
-| 2 | Khối xe máy đỗ dày đặc **gần** camera: từng xe hay `ignore_region`? | Vẫn từng xe nếu tách được từng cá thể; chỉ dùng `ignore_region` khi cụm ≥ 5 vật mà phần nhìn thấy của mỗi vật **cao < 20 px** (giữ nguyên 4.1.6). Cụm gần camera tách được thì **không** dùng `ignore_region`. | img_024, img_029 | CAL-04 |
+| 2 | Khối xe máy đỗ dày đặc **gần** camera: từng xe hay `ignore_region`? | Vẫn từng xe nếu tách được từng cá thể; chỉ dùng `ignore_region` khi cụm ≥ 5 vật mà phần nhìn thấy của mỗi vật **cao < 20 px** (giữ nguyên 4.1.6). Cụm gần camera tách được thì **không** dùng `ignore_region`. | img_024, img_029 | CAL-08 |
 | 3 | Hàng nhô ra (tre, rổ, mâm chuối) có thuộc box xe không? | Phần hàng **gắn cố định** vào xe nằm trong box xe; hàng nhô ra **hơn 20% chiều dài xe** thì không kéo box theo, nhưng không tách thành box riêng. | img_003, img_008 | CAL-03 |
-| 5 | Kính chắn gió / cửa sổ xe có thuộc mask xe không? | Có. Kính là một phần vỏ xe: mask phủ cả kính dù nhìn xuyên qua thấy nội thất / người. Người nhìn thấy **qua kính** vẫn là box `person` riêng nếu còn thấy ≥ 20% (4.1.2). | img_013 | CAL-01 |
-| 7 | Có đặt mức tin cậy tối thiểu để chấp nhận box máy? | **Không** dùng `conf` làm tiêu chí chấp nhận. `conf` chỉ để xếp thứ tự duyệt. Ngưỡng theo lớp chỉ dùng **trước** khi nạp vào CVAT (`three_wheeler=0.15`, còn lại 0.3). | img_021 | CAL-05 |
+| 5 | Kính chắn gió / cửa sổ xe có thuộc mask xe không? | Có. Kính là một phần vỏ xe: mask phủ cả kính dù nhìn xuyên qua thấy nội thất / người. Người nhìn thấy **qua kính** vẫn là box `person` riêng nếu còn thấy ≥ 20% (4.1.2). | img_013 | CAL-07 |
+| 7 | Có đặt mức tin cậy tối thiểu để chấp nhận box máy? | **Không** dùng `conf` làm tiêu chí chấp nhận. `conf` chỉ để xếp thứ tự duyệt. Ngưỡng theo lớp chỉ dùng **trước** khi nạp vào CVAT (`three_wheeler=0.15`, còn lại 0.3). | img_021 | CAL-09 |
 
-Trong 7 câu, **4 câu chốt được** (1, 3, 5, 7) và 2 câu chốt một phần (2, 4 dưới đây); câu 6 (box máy chồng nhau trong ảnh đêm) **chưa chốt** — xem mục 2.
+Trong 7 câu, **5 câu chốt được** (1, 2, 5, 7 và một phần 3) và câu 4 chốt một phần; câu 6 (box máy chồng nhau trong ảnh đêm) **chưa chốt** — xem mục 2.
 
 ## 2. Ca khó mới (từ lỗi của máy, bẫy lọt, box `can_review`)
 
@@ -31,4 +31,4 @@ Trong 7 câu, **4 câu chốt được** (1, 3, 5, 7) và 2 câu chốt một ph
 | Phiên bản | Thay đổi | Lý do (ca nào, `case_id`) |
 |---|---|---|
 | v1.0 | Bản giảng viên | — |
-| v1.1 | Chốt 4/7 câu hỏi mở (1, 3, 5, 7), chốt một phần câu 2 và 4; thêm **mục 3 ưu tiên model theo lớp**; thêm quy tắc **một vật một box, cấm tách box bộ phận**; thêm **kiểm trùng IoU > 0.8** trước export; thêm **phép thử số bánh** cho three_wheeler; ghi chú ảnh phơi sáng dài; giữ mở câu 6 | CAL-01 (lỗi lớp tuk-tuk), CAL-02 (tách box bộ phận), CAL-03 (hàng nhô), CAL-04 (xe đạp điện), CAL-05 (bẫy sai lớp lọt), CAL-06 (box trùng) |
+| v1.1 | Chốt 5/7 câu hỏi mở (1, 2, 5, 7, một phần 3), chốt một phần câu 4; thêm **mục 3 ưu tiên model theo lớp**; thêm quy tắc **một vật một box, cấm tách box bộ phận**; thêm **kiểm trùng IoU > 0.8** trước export; thêm **phép thử số bánh** cho three_wheeler; ghi chú ảnh phơi sáng dài; giữ mở câu 6 | CAL-01 (lỗi lớp tuk-tuk), CAL-02 (tách box bộ phận), CAL-03 (hàng nhô), CAL-04 (xe đạp điện), CAL-05 (bẫy sai lớp lọt), CAL-06 (box trùng), CAL-07 (kính chắn gió), CAL-08 (cụm xe gần camera), CAL-09 (ngưỡng conf) |

@@ -5,7 +5,7 @@
 - Lớp (L2 / L3 / khác): khác — K5-L23
 - Tài khoản GitHub: BuiCongDat2905
 - Repo bài nộp (URL): https://github.com/BuiCongDat2905/K5-L23-Day08-BuiCongDat-2A202603068-AI-Assisted-Labeling
-- Commit chốt bài (hash): 0b7a41b
+- Commit chốt bài (hash): 625253b
 - Máy: Windows 11 Home, CPU Intel Core i5-12450HX, CPU only (torch 2.15.0+cpu, không CUDA), 15.7 GB RAM
 - CVAT (Docker): v2.81.0 (Docker 29.8.1)
 

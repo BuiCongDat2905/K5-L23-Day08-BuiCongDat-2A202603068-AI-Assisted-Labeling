@@ -1,6 +1,6 @@
-image,object_id,error_type,reviewer,note
-img_004.jpg,,khong,lead,"5 tuk-tuk + 3 person: box ba bánh ôm cả mui và thân, không thấy thiếu/thừa"
-img_008.jpg,93,sai_vi_tri_kich_thuoc,lead,"Box three_wheeler phải trùm sang cả xe ba gác giữa (đã có box 92), thừa nền dưới chân"
-img_017.jpg,,khong,lead,"3 tuk-tuk + 2 person, box khớp vật; box 147 hơi rộng nhưng vẫn ôm đúng xe"
-img_024.jpg,287,thua,lead,"Box car nằm trên vệt đèn pha kéo dài, không có thân xe ô tô"
-img_034.jpg,430,sai_lop,lead,"Box three_wheeler trên xe van/ô tô trắng giữa đường, không phải xe ba bánh"
+﻿image,object_id,error_type,reviewer,note
+img_004.jpg,,khong,BuiCongDat,"5 tuk-tuk + 3 person: box ba bánh ôm cả mui và thân, không thấy thiếu/thừa"
+img_008.jpg,93,sai_vi_tri_kich_thuoc,BuiCongDat,"Box three_wheeler phải trùm sang cả xe ba gác giữa (đã có box 92), thừa nền dưới chân"
+img_017.jpg,,khong,BuiCongDat,"3 tuk-tuk + 2 person, box khớp vật; box 147 hơi rộng nhưng vẫn ôm đúng xe"
+img_024.jpg,287,thua,BuiCongDat,"Box car nằm trên vệt đèn pha kéo dài, không có thân xe ô tô"
+img_034.jpg,430,sai_lop,BuiCongDat,"Box three_wheeler trên xe van/ô tô trắng giữa đường, không phải xe ba bánh"
